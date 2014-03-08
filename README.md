@@ -1,5 +1,5 @@
 # FsIdentitySample
-This solution is a sample of ASP.NET Identity written by F#.
+This solution is a sample of ASP.NET Identity written in F#.
 
 ### Details :
 - .NET Framework 4.5
