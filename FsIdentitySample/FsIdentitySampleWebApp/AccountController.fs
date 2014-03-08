@@ -118,3 +118,11 @@ type AccountController() =
 
     member private this.AddErrors(result:IdentityResult) =
         result.Errors |> Seq.iter (fun e -> this.ModelState.AddModelError("", e))
+
+
+    override this.Dispose(disposing) =
+        if disposing && (this.UserManager <> null) then
+            this.UserManager.Dispose()
+            this.UserManager <- null
+
+        base.Dispose(disposing)
