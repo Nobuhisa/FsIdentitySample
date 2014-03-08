@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNet.Identity
+@using FsWeb.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>HOME</title>
+</head>
+<body>
+
+    <h2>F#！F#！</h2>
+
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    @Html.ActionLink("Hello, " + User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: null)
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+            </ul>
+        }
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }
+
+    <br />
+    <hr />
+    <br />
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Member page", "MemberPage", "Home")</li>
+        <li>@Html.ActionLink("Admin page", "Admin", "Home")</li>
+    </ul>
+
+</body>
+</html>
